@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>images/tb-back.svg</file>
+        <file>images/tb-forward.svg</file>
+        <file>images/tb-reload.svg</file>
+        <file>images/tb-bookmark0.svg</file>
+        <file>images/tb-bookmark1.svg</file>
+        <file>images/tb-close.svg</file>
+        <file>images/tb-maximize.svg</file>
+        <file>images/tb-minimize.svg</file>
+        <file>images/tb-maximized.svg</file>
+        <file>images/tb-https.svg</file>
+        <file>images/tb-http.svg</file>
+        <file>images/tb-search.svg</file>
+    </qresource>
+</RCC>
