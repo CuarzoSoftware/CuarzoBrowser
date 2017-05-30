@@ -1,27 +1,28 @@
 # cuarzobrowser
-A web browser developed with QT and WebKit.
+A web browser developed with [QT](https://www.qt.io/) and [WebKit](https://webkit.org/).
 
 # Todo
 
-- [ ] Marcadores
-- [ ] Historial
-- [ ] Pestañas
-- [ ] Navegación Privada
-- [ ] Menú de Opciones
-- [ ] Menú Contextual (Click Derecho)
+- [ ] Bookmarks
+- [ ] History
+- [ ] Tabs
+- [ ] Private Navigation
+- [ ] Settings
+- [ ] Context Menu (Right Click)
 - [ ] Align to Left or Right Border (Native OS)
 - [ ] Sync
 - [ ] Compression
-- [ ] Extensiones
+- [ ] Extensions
 	- [ ] uBlock Origin 
 	- [ ] Privacy Badger
 	- [ ] HTTPS Everywhere
 
 # Building Instructions
 
-Para compilar es necesario tener QT 5.8
+In order to build QT5+ is needed.
 
 ~~~
+$ git clone https://github.com/juanlatorre/cuarzobrowser.git
 $ cd cuarzobrowser
 $ qmake cuarzobrowser.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 $ make
@@ -30,6 +31,8 @@ $ ./cuarzobrowser
 ~~~
 
 # Libraries used (ldd)
+
+List of libraries that you may need to install, the name could variate on each Distribution.
 
 * linux-vdso.so.1
 * libQt5WebEngineWidgets.so.5
