@@ -1,6 +1,22 @@
 # cuarzobrowser
 A web browser developed with QT and WebKit.
 
+# Todo
+
+- [ ] Marcadores
+- [ ] Historial
+- [ ] Pestañas
+- [ ] Navegación Privada
+- [ ] Menú de Opciones
+- [ ] Menú Contextual (Click Derecho)
+- [ ] Align to Left or Right Border (Native OS)
+- [ ] Sync
+- [ ] Compression
+- [ ] Extensiones
+	- [ ] uBlock Origin 
+	- [ ] Privacy Badger
+	- [ ] HTTPS Everywhere
+
 # Building Instructions
 
 Para compilar es necesario tener QT 5.8
