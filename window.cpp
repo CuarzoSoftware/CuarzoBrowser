@@ -1,8 +1,3 @@
-#include <QDebug>
-#include <QString>
-#include <QToolTip>
-#include <QCursor>
-#include <QString>
 #include "window.h"
 
 BrowserWindow::BrowserWindow() {

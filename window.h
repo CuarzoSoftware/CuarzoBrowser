@@ -6,8 +6,14 @@
 #include <QWebEngineView>
 #include <QUrl>
 #include <QMouseEvent>
-#include <topbar.h>
-#include <bookmarkbar.h>
+#include <QDebug>
+#include <QString>
+#include <QToolTip>
+#include <QCursor>
+#include <QString>
+#include "topbar.h"
+#include "bookmarkbar.h"
+#include "storage.h"
 
 class BrowserWindow : public QWidget {
   Q_OBJECT
@@ -23,11 +29,12 @@ public:
   topbar *tb = new topbar();
   bookmarkbar *bookbar = new bookmarkbar();
   QWebEngineView *view = new QWebEngineView();
+  Storage *almacen = new Storage();
   
 public slots:
-	void back_to();
-	void forward_to();
-	void reload_to();
+  void back_to();
+  void forward_to();
+  void reload_to();
   void go_to();
   void addBookmark();
   void maximize(bool checked);

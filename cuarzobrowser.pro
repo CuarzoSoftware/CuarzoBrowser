@@ -8,16 +8,16 @@ TEMPLATE = app
 
 HEADERS += \
 	window.h \
-    topbar.h \
-    opbutton.h \
-    bookmarkbar.h \
-    hoverbutton.h
-
+  topbar.h \
+  opbutton.h \
+  bookmarkbar.h \
+  hoverbutton.h \
+    storage.h
 SOURCES += \
-    main.cpp \
-    topbar.cpp \
-    window.cpp \
-    bookmarkbar.cpp
+  main.cpp \
+  topbar.cpp \
+  window.cpp \
+  bookmarkbar.cpp
 
 RESOURCES += \
-    resources.qrc
+  resources.qrc
