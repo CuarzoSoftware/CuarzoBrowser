@@ -12,7 +12,7 @@ HEADERS += \
   opbutton.h \
   bookmarkbar.h \
   hoverbutton.h \
-    storage.h
+	storage.h
 SOURCES += \
   main.cpp \
   topbar.cpp \

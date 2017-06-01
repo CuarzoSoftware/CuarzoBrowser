@@ -1,6 +1,8 @@
 #include "window.h"
 
 BrowserWindow::BrowserWindow() {
+	almacen->readJson();
+	qDebug() << almacen->bookmarks["hello"].toString();
   QString tt_http("Vulnerable Connection\nData sent between browsers and web servers is\nsent in plain text—leaving you vulnerable to eavesdropping.\nIf an attacker is able to intercept all data being sent between\na browser and a web server, they can see and use that information.");
   QString tt_https("Secure Connection\nSSL allows sensitive information such as credit card numbers, social\nsecurity numbers, and login credentials to be transmitted securely.");
   this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
