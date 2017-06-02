@@ -29,7 +29,7 @@ public:
   topbar *tb = new topbar();
   bookmarkbar *bookbar = new bookmarkbar();
   QWebEngineView *view = new QWebEngineView();
-  Storage *almacen = new Storage();
+  Storage *storage = new Storage();
   
 public slots:
   void back_to();

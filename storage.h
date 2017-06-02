@@ -3,10 +3,13 @@
 
 #include <QFile>
 #include <QObject>
-#include <QJsonDocument>
 #include <QVariantMap>
+#include <QVariantList>
 #include <QDebug>
 #include <QDir>
+#include <QString>
+#include <QByteArray>
+#include <QJsonDocument>
 
 extern QString path;
 
@@ -15,7 +18,7 @@ class Storage : public QObject {
 
 public:
 	Storage() {detectPrefs();}
-	QVariantMap bookmarks;
+	QVariantList bookmarkList;
 
 public slots:
 
@@ -24,34 +27,41 @@ public slots:
 			QDir().mkdir(path);
 		}
 
-		if (!QDir(path+"/browser").exists()) {
-			QDir().mkdir(path+"/browser");
+		if (!QDir(path+"/cuarzo").exists()) {
+			QDir().mkdir(path+"/cuarzo");
 		}
 
-		// QFileInfo bookmarks_file(path+"/browser/bookmarks.json");
-		// if (!bookmarks_file.exists()) {
-		// 	QString base = "{\"artists\":{},\"playlists\":{}}";
-		// 	//saveJson();
-		// }
+		if (!QDir(path+"/cuarzo/browser").exists()) {
+			QDir().mkdir(path+"/cuarzo/browser");
+		}
 
-		readJson();
+		QFileInfo check_bookmarks(path+"/cuarzo/browser/bookmarks.json");
+		if (!check_bookmarks.exists()) {
+			QString base = "{\"bookmarks\":[{\"id\":0,\"title\":\"Duck Duck Go\",\"url\":\"https://duckduckgo.com/\"},{\"id\":1,\"title\":\"Reddit\",\"url\":\"https://www.reddit.com/\"}]}";
+			QJsonDocument doc = QJsonDocument::fromJson(base.toUtf8());
+			QFile file(path+"/cuarzo/browser/bookmarks.json");
+			file.open(QIODevice::WriteOnly);
+			file.write(doc.toBinaryData());
+			file.close();
+		}
 	}
 
-	void readJson() {
-		QFile file("/tmp/bookmarks.json");
+	void readBookmarkJson() {
+		QFile file(path+"/cuarzo/browser/bookmarks.json");
 		file.open(QIODevice::ReadOnly);
-		QJsonDocument doc = QJsonDocument::fromBinaryData(file.readAll());
-		bookmarks = doc.toVariant().toMap();
+		QByteArray bookmarkData = file.readAll();
 		file.close();
+		QJsonDocument doc = QJsonDocument::fromBinaryData(bookmarkData);
+		bookmarkList = doc.toVariant().toMap()["bookmarks"].toList();
 	}
 
-	void saveJson() {
-		QFile file(path+"/browser/bookmarks.json");
-		file.open(QIODevice::WriteOnly);
-		QJsonDocument doc = QJsonDocument::fromVariant(bookmarks);
-		file.write(doc.toBinaryData());
-		file.close();
-	}
+	// void saveJson() {
+	// 	QFile file(path+"/cuarzo/browser/bookmarks.json");
+	// 	file.open(QIODevice::WriteOnly);
+	// 	QJsonDocument doc = QJsonDocument::fromVariant(bookmarks);
+	// 	file.write(doc.toBinaryData());
+	// 	file.close();
+	// }
 };
 
 #endif // STORAGE_H
