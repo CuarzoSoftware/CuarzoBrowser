@@ -12,5 +12,6 @@
         <file>images/tb-https.svg</file>
         <file>images/tb-http.svg</file>
         <file>images/tb-search.svg</file>
+        <file>images/app_icon.ico</file>
     </qresource>
 </RCC>
