@@ -1,6 +1,10 @@
 #include "window.h"
 
 BrowserWindow::BrowserWindow() {
+	storage->readBookmarkJson();
+
+	cargarMarcadores();
+
   QString tt_http("Vulnerable Connection\nData sent between browsers and web servers is\nsent in plain text—leaving you vulnerable to eavesdropping.\nIf an attacker is able to intercept all data being sent between\na browser and a web server, they can see and use that information.");
   QString tt_https("Secure Connection\nSSL allows sensitive information such as credit card numbers, social\nsecurity numbers, and login credentials to be transmitted securely.");
 
@@ -33,6 +37,17 @@ BrowserWindow::BrowserWindow() {
   connect(tb->https, &QAction::triggered, [=]{QToolTip::showText(QCursor::pos(), tt_https, this);});
   connect(view, SIGNAL(loadFinished(bool)), SLOT(finishLoading(bool)));
   //connect(bookbar->test_1, SIGNAL(rightClicked()),this, SLOT(bookmarkRightClicked()));
+}
+
+void BrowserWindow::cargarMarcadores() {
+	foreach(QVariant map, storage->bookmarkList) {
+		marcador *newMkr = new marcador(map.toMap());
+		bookbar->bookmarks->addWidget(newMkr,0,Qt::AlignLeft);
+		newMkr->setFixedSize(newMkr->fontMetrics().width(newMkr->text())+5,30);
+		bookbar->marcadores.append(newMkr);
+		connect(newMkr,SIGNAL(goToUrl(QUrl)),view,SLOT(load(QUrl)));
+	}
+	bookbar->bookmarks->insertStretch( -1, 1 );
 }
 
 void BrowserWindow::bookmarkRightClicked() {
@@ -87,13 +102,8 @@ void BrowserWindow::addBookmark() {
 		bookbar->marcadores.append(marcador);
 		tb->bookmark_action->setIcon(QIcon(":/res/images/tb-bookmark1.svg"));
 		tb->bookmark_action->setEnabled(false);
-
-		qDebug() << bookbar->marcadores.count();
+		qDebug() << bookbar->marcadores[0];
 	}
-	// test_1 = new HoverButton();
-	// test_1->setText(storage->bookmarkList[0].toMap()["title"].toString());
-	// bookmarks->addWidget(test_1,0,Qt::AlignLeft);
-	// test_1->setFixedSize(test_1->fontMetrics().width(test_1->text())+5,30);
 }
 
 void BrowserWindow::maximize(bool checked) {

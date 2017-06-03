@@ -12,12 +12,14 @@ HEADERS += \
   opbutton.h \
   bookmarkbar.h \
   hoverbutton.h \
-	storage.h
+	storage.h \
+  marcador.h
 SOURCES += \
   main.cpp \
   topbar.cpp \
   window.cpp \
-  bookmarkbar.cpp
+  bookmarkbar.cpp \
+  marcador.cpp
 
 RESOURCES += \
   resources.qrc

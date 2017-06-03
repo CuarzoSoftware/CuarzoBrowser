@@ -15,6 +15,7 @@
 #include "topbar.h"
 #include "bookmarkbar.h"
 #include "storage.h"
+#include "marcador.h"
 
 class BrowserWindow : public QWidget {
   Q_OBJECT
@@ -37,6 +38,7 @@ public slots:
   void forward_to();
   void reload_to();
   void go_to();
+  void cargarMarcadores();
   void addBookmark();
   void maximize(bool checked);
   void finishLoading(bool finished);
