@@ -3,7 +3,6 @@
 
 #include <QFrame>
 #include <QHBoxLayout>
-#include <QPushButton>
 #include <QString>
 #include <QFontMetrics>
 #include <QDebug>
@@ -15,8 +14,8 @@ class bookmarkbar : public QFrame {
 public:
 	bookmarkbar();
 	QHBoxLayout *bookmarks = new QHBoxLayout(this);
-	HoverButton *button0 = new HoverButton();
 	Storage *storage = new Storage();
+	QList<HoverButton*> marcadores;
 };
 
 #endif // BOOKMARKBAR_H

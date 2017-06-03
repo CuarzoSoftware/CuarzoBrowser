@@ -3,19 +3,24 @@
 BrowserWindow::BrowserWindow() {
   QString tt_http("Vulnerable Connection\nData sent between browsers and web servers is\nsent in plain text—leaving you vulnerable to eavesdropping.\nIf an attacker is able to intercept all data being sent between\na browser and a web server, they can see and use that information.");
   QString tt_https("Secure Connection\nSSL allows sensitive information such as credit card numbers, social\nsecurity numbers, and login credentials to be transmitted securely.");
+
   this->setWindowIcon(QIcon(":/res/images/app_icon.ico"));
   this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
   this->setMinimumSize(600,600);
+
   container->setContentsMargins(0,10,0,0);
   container->addWidget(tb);
-  tb->setContentsMargins(5,0,5,0);
-  bookbar->setContentsMargins(5,0,5,0);
   container->addWidget(bookbar);
   container->addWidget(view);
+
+  tb->setContentsMargins(5,0,5,0);
   tb->maximize_btn->setCheckable(true);
   tb->https->setVisible(false);
   tb->http->setVisible(false);
   tb->search->setVisible(true);
+
+  bookbar->setContentsMargins(5,0,5,0);
+
   connect(tb->back_btn,SIGNAL(released()),this,SLOT(back_to()));
   connect(tb->forward_btn,SIGNAL(released()),this,SLOT(forward_to()));
   connect(tb->reload_btn,SIGNAL(released()),this,SLOT(reload_to()));
@@ -24,9 +29,14 @@ BrowserWindow::BrowserWindow() {
   connect(tb->maximize_btn,SIGNAL(toggled(bool)),this,SLOT(maximize(bool)));
   connect(tb->close_btn,SIGNAL(released()),this,SLOT(close()));
   connect(tb->bookmark_action,SIGNAL(triggered()),this,SLOT(addBookmark()));
-  connect(view, SIGNAL(loadFinished(bool)), SLOT(finishLoading(bool)));
   connect(tb->http, &QAction::triggered, [=]{QToolTip::showText(QCursor::pos(), tt_http, this);});
   connect(tb->https, &QAction::triggered, [=]{QToolTip::showText(QCursor::pos(), tt_https, this);});
+  connect(view, SIGNAL(loadFinished(bool)), SLOT(finishLoading(bool)));
+  //connect(bookbar->test_1, SIGNAL(rightClicked()),this, SLOT(bookmarkRightClicked()));
+}
+
+void BrowserWindow::bookmarkRightClicked() {
+	qDebug() << "A bookmark has been right clicked";
 }
 
 void BrowserWindow::setProgress(int p){Q_UNUSED(p);}
@@ -68,7 +78,22 @@ void BrowserWindow::go_to() {
 }
 
 void BrowserWindow::addBookmark() {
-  qDebug() << view->title();
+	if (!view->title().isEmpty()) {
+		QString title = view->title();
+		QUrl uri = view->url();
+		HoverButton* marcador = new HoverButton(title);
+		bookbar->bookmarks->addWidget(marcador,0,Qt::AlignLeft);
+		marcador->setFixedSize(marcador->fontMetrics().width(marcador->text())+5,30);
+		bookbar->marcadores.append(marcador);
+		tb->bookmark_action->setIcon(QIcon(":/res/images/tb-bookmark1.svg"));
+		tb->bookmark_action->setEnabled(false);
+
+		qDebug() << bookbar->marcadores.count();
+	}
+	// test_1 = new HoverButton();
+	// test_1->setText(storage->bookmarkList[0].toMap()["title"].toString());
+	// bookmarks->addWidget(test_1,0,Qt::AlignLeft);
+	// test_1->setFixedSize(test_1->fontMetrics().width(test_1->text())+5,30);
 }
 
 void BrowserWindow::maximize(bool checked) {

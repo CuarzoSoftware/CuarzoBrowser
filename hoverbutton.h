@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
+#include <QMouseEvent>
 
 class HoverButton : public QPushButton {
 	Q_OBJECT
@@ -16,17 +17,21 @@ class HoverButton : public QPushButton {
 
 public:
 
-	//VARIABLES
-
 	int w;
 	int h;
 	QPropertyAnimation *animation;
 	QGraphicsOpacityEffect *opacity;
 
-	//CONSTRUCTORS
-
 	HoverButton() {
 		setAttribute(Qt::WA_Hover);
+		setMouseTracking(true);
+		setStyleSheet("HoverButton{background:transparent;border:none;}");
+		setup();
+	}
+
+	HoverButton(QString text) {
+		setAttribute(Qt::WA_Hover);
+		setText(text);
 		setMouseTracking(true);
 		setStyleSheet("HoverButton{background:transparent;border:none;}");
 		setup();
@@ -64,8 +69,6 @@ public:
 	}
 
 public slots:
-
-	//METHODS
 
 	void changeIcon(QString icon) {
 		this->setIcon(QIcon(icon));
@@ -125,6 +128,15 @@ public slots:
 
 	void leaveEvent(QEvent*) {
 		setStyleSheet("HoverButton{background:transparent;border:none;}");
+	}
+
+signals:
+	void rightClicked();
+
+protected:
+	void mouseReleaseEvent(QMouseEvent *e) {
+		if (e->button() == Qt::RightButton) emit rightClicked();
+		else if (e->button() == Qt::LeftButton) emit clicked();
 	}
 
 };

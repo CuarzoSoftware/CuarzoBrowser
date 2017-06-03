@@ -1,16 +1,17 @@
 #ifndef BROWSERWINDOW_H
 #define BROWSERWINDOW_H
 
+#include <QDebug>
 #include <QWidget>
 #include <QBoxLayout>
 #include <QWebEngineView>
 #include <QUrl>
 #include <QMouseEvent>
-#include <QDebug>
 #include <QString>
 #include <QToolTip>
 #include <QCursor>
 #include <QString>
+#include <QPoint>
 #include "topbar.h"
 #include "bookmarkbar.h"
 #include "storage.h"
@@ -40,6 +41,7 @@ public slots:
   void maximize(bool checked);
   void finishLoading(bool finished);
   void setProgress(int p);
+  void bookmarkRightClicked();
 
 protected:
   void mousePressEvent(QMouseEvent *event);
