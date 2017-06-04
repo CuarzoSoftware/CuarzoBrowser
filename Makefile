@@ -1320,6 +1320,7 @@ moc_marcador.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QVariantMap \
 		../../Qt/5.9/gcc_64/include/QtGui/qvector2d.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt/5.9/gcc_64/include/QtCore/QUrl \
+		../../Qt/5.9/gcc_64/include/QtCore/QDebug \
 		hoverbutton.h \
 		../../Qt/5.9/gcc_64/include/QtCore/QPropertyAnimation \
 		../../Qt/5.9/gcc_64/include/QtCore/qpropertyanimation.h \
@@ -2135,6 +2136,7 @@ marcador.o: marcador.cpp marcador.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qvector2d.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt/5.9/gcc_64/include/QtCore/QUrl \
+		../../Qt/5.9/gcc_64/include/QtCore/QDebug \
 		hoverbutton.h \
 		../../Qt/5.9/gcc_64/include/QtCore/QPropertyAnimation \
 		../../Qt/5.9/gcc_64/include/QtCore/qpropertyanimation.h \

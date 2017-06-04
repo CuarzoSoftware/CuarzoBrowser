@@ -38,6 +38,7 @@ public slots:
   void forward_to();
   void reload_to();
   void go_to();
+  void load(QUrl);
   void cargarMarcadores();
   void addBookmark();
   void maximize(bool checked);

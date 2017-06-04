@@ -4,20 +4,19 @@
 #include <QVariantMap>
 #include <QMouseEvent>
 #include <QUrl>
+#include <QDebug>
 #include <hoverbutton.h>
 
 class marcador : public HoverButton {
 	Q_OBJECT
-	
+
 public:
-  marcador(QVariantMap);
+  marcador(QVariant);
   QVariantMap data;
+  void mouseReleaseEvent(QMouseEvent *e);
 
 signals:
 	void goToUrl(QUrl);
-
-protected:
-	void mouseReleaseEvent(QMouseEvent *e);
 	
 };
 

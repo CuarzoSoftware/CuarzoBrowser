@@ -45,10 +45,10 @@ void BrowserWindow::cargarMarcadores() {
 		bookbar->bookmarks->addWidget(newMkr,0,Qt::AlignLeft);
 		newMkr->setFixedSize(newMkr->fontMetrics().width(newMkr->text())+5,30);
 		bookbar->marcadores.append(newMkr);
-		connect(newMkr,SIGNAL(goToUrl(QUrl)),view,SLOT(load(QUrl)));
+		connect(newMkr,SIGNAL(goToUrl(QUrl)),this,SLOT(load(QUrl)));
 	}
 	bookbar->bookmarks->insertStretch( -1, 1 );
-}
+}	
 
 void BrowserWindow::bookmarkRightClicked() {
 	qDebug() << "A bookmark has been right clicked";
@@ -90,6 +90,10 @@ void BrowserWindow::go_to() {
   } else {
       view->load(QUrl("http://" + tb->url_edit->text()));
   }
+}
+
+void BrowserWindow::load(QUrl uri) {
+	view->load(uri);
 }
 
 void BrowserWindow::addBookmark() {
