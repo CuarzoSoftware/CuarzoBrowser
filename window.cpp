@@ -41,7 +41,7 @@ BrowserWindow::BrowserWindow() {
 
 void BrowserWindow::cargarMarcadores() {
 	foreach(QVariant map, storage->bookmarkList) {
-		marcador *newMkr = new marcador(map.toMap());
+		marcador *newMkr = new marcador(map);
 		bookbar->bookmarks->addWidget(newMkr,0,Qt::AlignLeft);
 		newMkr->setFixedSize(newMkr->fontMetrics().width(newMkr->text())+5,30);
 		bookbar->marcadores.append(newMkr);
