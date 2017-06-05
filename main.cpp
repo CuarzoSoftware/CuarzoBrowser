@@ -1,8 +1,10 @@
 #include <QApplication>
 #include <QDir>
+#include <QStringList>
 #include <window.h>
 
 QString path = QDir::homePath() + "/.prefs";
+QStringList verificarMarcador;
 
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);

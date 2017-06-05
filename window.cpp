@@ -32,7 +32,7 @@ BrowserWindow::BrowserWindow() {
   connect(tb->minimize_btn,SIGNAL(released()),this,SLOT(showMinimized()));
   connect(tb->maximize_btn,SIGNAL(toggled(bool)),this,SLOT(maximize(bool)));
   connect(tb->close_btn,SIGNAL(released()),this,SLOT(close()));
-  connect(tb->bookmark_action,SIGNAL(triggered()),this,SLOT(addBookmark()));
+  connect(tb->bookmark_action,SIGNAL(triggered()),this,SLOT(agregarMarcador()));
   connect(tb->http, &QAction::triggered, [=]{QToolTip::showText(QCursor::pos(), tt_http, this);});
   connect(tb->https, &QAction::triggered, [=]{QToolTip::showText(QCursor::pos(), tt_https, this);});
   connect(view, SIGNAL(loadFinished(bool)), SLOT(finishLoading(bool)));
@@ -42,13 +42,35 @@ BrowserWindow::BrowserWindow() {
 void BrowserWindow::cargarMarcadores() {
 	foreach(QVariant map, storage->bookmarkList) {
 		marcador *newMkr = new marcador(map);
-		bookbar->bookmarks->addWidget(newMkr,0,Qt::AlignLeft);
-		newMkr->setFixedSize(newMkr->fontMetrics().width(newMkr->text())+5,30);
+		bookbar->bookmarks->addWidget(newMkr,0);
 		bookbar->marcadores.append(newMkr);
 		connect(newMkr,SIGNAL(goToUrl(QUrl)),this,SLOT(load(QUrl)));
 	}
-	bookbar->bookmarks->insertStretch( -1, 1 );
+	bookbar->bookmarks->addStretch(1);
 }	
+
+void BrowserWindow::agregarMarcador() {
+	if (!view->title().isEmpty()) {
+		QString title = view->title();
+		QString uri = view->url().toString();
+		int pos = bookbar->bookmarks->count() - 1;
+		HoverButton* marcador = new HoverButton(title);
+		marcador->setFixedSize(marcador->fontMetrics().width(marcador->text())+5,30);
+		bookbar->bookmarks->insertWidget(pos, marcador);
+		verificarMarcador.append(uri);
+		verificacionMarcadores();
+	}
+}
+
+void BrowserWindow::verificacionMarcadores() {
+	if (verificarMarcador.contains(view->url().toString())) {
+    	tb->bookmark_action->setIcon(QIcon(":/res/images/tb-bookmark1.svg"));
+			tb->bookmark_action->setEnabled(false);
+    } else {
+    	tb->bookmark_action->setIcon(QIcon(":/res/images/tb-bookmark0.svg"));
+			tb->bookmark_action->setEnabled(true);
+    }
+}
 
 void BrowserWindow::bookmarkRightClicked() {
 	qDebug() << "A bookmark has been right clicked";
@@ -69,6 +91,7 @@ void BrowserWindow::finishLoading(bool finished) {
       tb->http->setVisible(true);
       tb->search->setVisible(false);
     }
+    verificacionMarcadores();
   }
 }
 
@@ -94,20 +117,6 @@ void BrowserWindow::go_to() {
 
 void BrowserWindow::load(QUrl uri) {
 	view->load(uri);
-}
-
-void BrowserWindow::addBookmark() {
-	if (!view->title().isEmpty()) {
-		QString title = view->title();
-		QUrl uri = view->url();
-		HoverButton* marcador = new HoverButton(title);
-		bookbar->bookmarks->addWidget(marcador,0,Qt::AlignLeft);
-		marcador->setFixedSize(marcador->fontMetrics().width(marcador->text())+5,30);
-		bookbar->marcadores.append(marcador);
-		tb->bookmark_action->setIcon(QIcon(":/res/images/tb-bookmark1.svg"));
-		tb->bookmark_action->setEnabled(false);
-		qDebug() << bookbar->marcadores[0];
-	}
 }
 
 void BrowserWindow::maximize(bool checked) {

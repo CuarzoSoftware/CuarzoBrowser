@@ -6,16 +6,20 @@
 #include <QBoxLayout>
 #include <QWebEngineView>
 #include <QUrl>
+#include <QList>
 #include <QMouseEvent>
 #include <QString>
 #include <QToolTip>
 #include <QCursor>
 #include <QString>
 #include <QPoint>
+#include <QStringList>
 #include "topbar.h"
 #include "bookmarkbar.h"
 #include "storage.h"
 #include "marcador.h"
+
+extern QStringList verificarMarcador;
 
 class BrowserWindow : public QWidget {
   Q_OBJECT
@@ -40,7 +44,8 @@ public slots:
   void go_to();
   void load(QUrl);
   void cargarMarcadores();
-  void addBookmark();
+  void agregarMarcador();
+  void verificacionMarcadores();
   void maximize(bool checked);
   void finishLoading(bool finished);
   void setProgress(int p);

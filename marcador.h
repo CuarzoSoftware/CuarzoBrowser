@@ -5,7 +5,11 @@
 #include <QMouseEvent>
 #include <QUrl>
 #include <QDebug>
+#include <QFontMetrics>
+#include <QStringList>
 #include <hoverbutton.h>
+
+extern QStringList verificarMarcador;
 
 class marcador : public HoverButton {
 	Q_OBJECT
