@@ -25,4 +25,6 @@ RESOURCES += \
   resources.qrc
 
 DISTFILES += \
-    .travis.yml
+    .travis.yml \
+    default.desktop \
+    default-icon.png
