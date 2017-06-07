@@ -8,7 +8,7 @@ TARGET = cuarzobrowser
 TEMPLATE = app
 
 HEADERS += \
-	window.h \
+  window.h \
   topbar.h \
   opbutton.h \
   bookmarkbar.h \
@@ -24,3 +24,6 @@ SOURCES += \
 
 RESOURCES += \
   resources.qrc
+
+DISTFILES += \
+    .travis.yml
