@@ -20,7 +20,7 @@ script:
   - cp ../cuarzobrowser.desktop .
   - cp ../cuarzobrowser.png cuarzobrowser.png
   - cd ..
-  - sudo make INSTALL_ROOT=appdir install ; sudo chown -R $USER appdir ; find appdir/
+  - sudo make DESTDIR=appdir install ; sudo chown -R $USER appdir ; find appdir/
 
 after_success:
   - wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
@@ -29,4 +29,12 @@ after_success:
   - ./linuxdeployqt*.AppImage ./appdir/usr/bin/cuarzobrowser -bundle-non-qt-libs
   - ./linuxdeployqt*.AppImage ./appdir/usr/bin/cuarzobrowser -appimage
   - find ./appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
-  - curl --upload-file ./Cuarzo_Browser*.AppImage https://transfer.sh/Cuarzo_Browser-git.$(git rev-parse --short HEAD)-x86_64.AppImage
+  - ls -lh ./Cuarzo_Browser*.AppImage
+  - mv ./Cuarzo_Browser*.AppImage CuarzoBrowser-continuous-x86_64.AppImage
+  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - bash ./upload.sh CuarzoBrowser-continuous-x86_64.AppImage
+
+branches:
+  except:
+    - #Do not build manually uploaded files to Github Releases
+    - /^(?i:continuous)$/

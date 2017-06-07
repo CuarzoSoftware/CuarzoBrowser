@@ -28,4 +28,10 @@ DISTFILES += \
     .travis.yml \
     default-icon.png \
     cuarzobrowser.desktop \
-    cuarzobrowser.png
+    cuarzobrowser.png \
+    LICENSE \
+    README.md
+
+mac {
+    TARGET = CuarzoBrowser
+}
