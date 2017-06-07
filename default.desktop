@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Cuarzo Browser
+Exec=AppRun %F
+Icon=default
+Comment=Web Browser made with Qt and C++
+Terminal=false
