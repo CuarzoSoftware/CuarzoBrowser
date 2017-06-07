@@ -1,6 +1,5 @@
-ReQT += core
-QT += webenginewidgets
-QT += svg
+QT += core webenginewidgets svg
+CONFIG += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
