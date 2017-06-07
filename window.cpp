@@ -9,7 +9,6 @@ BrowserWindow::BrowserWindow() {
   QString tt_https("Secure Connection\nSSL allows sensitive information such as credit card numbers, social\nsecurity numbers, and login credentials to be transmitted securely.");
 
   this->setWindowIcon(QIcon(":/res/images/app_icon.ico"));
-  this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
   this->setMinimumSize(600,600);
 
   container->setContentsMargins(0,10,0,0);
@@ -18,7 +17,6 @@ BrowserWindow::BrowserWindow() {
   container->addWidget(view);
 
   tb->setContentsMargins(5,0,5,0);
-  tb->maximize_btn->setCheckable(true);
   tb->https->setVisible(false);
   tb->http->setVisible(false);
   tb->search->setVisible(true);
@@ -29,13 +27,10 @@ BrowserWindow::BrowserWindow() {
   connect(tb->forward_btn,SIGNAL(released()),this,SLOT(forward_to()));
   connect(tb->reload_btn,SIGNAL(released()),this,SLOT(reload_to()));
   connect(tb->url_edit,SIGNAL(returnPressed()),this,SLOT(go_to()));
-  connect(tb->minimize_btn,SIGNAL(released()),this,SLOT(showMinimized()));
-  connect(tb->maximize_btn,SIGNAL(toggled(bool)),this,SLOT(maximize(bool)));
-  connect(tb->close_btn,SIGNAL(released()),this,SLOT(close()));
   connect(tb->bookmark_action,SIGNAL(triggered()),this,SLOT(agregarMarcador()));
   connect(tb->http, &QAction::triggered, [=]{QToolTip::showText(QCursor::pos(), tt_http, this);});
   connect(tb->https, &QAction::triggered, [=]{QToolTip::showText(QCursor::pos(), tt_https, this);});
-  connect(view, SIGNAL(loadFinished(bool)), SLOT(finishLoading(bool)));
+  connect(view, SIGNAL(loadFinished(bool)),this, SLOT(finishLoading(bool)));
   //connect(bookbar->test_1, SIGNAL(rightClicked()),this, SLOT(bookmarkRightClicked()));
 }
 
@@ -117,16 +112,6 @@ void BrowserWindow::go_to() {
 
 void BrowserWindow::load(QUrl uri) {
 	view->load(uri);
-}
-
-void BrowserWindow::maximize(bool checked) {
-  if(checked) {
-    this->showMaximized();
-    tb->maximize_btn->changeIcon(":/res/images/tb-maximized.svg");
-  } else {
-    this->showNormal();
-    tb->maximize_btn->changeIcon(":/res/images/tb-maximize.svg");
-  }
 }
 
 void BrowserWindow::mousePressEvent(QMouseEvent *event) {

@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_QML_DEBUG -DQT_WEBENGINEWIDGETS_LIB -DQT_WEBENGINECORE_LIB -DQT_QUICK_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_WEBCHANNEL_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_WEBENGINEWIDGETS_LIB -DQT_WEBENGINECORE_LIB -DQT_QUICK_LIB -DQT_PRINTSUPPORT_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_WEBCHANNEL_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I../../Qt/5.9/gcc_64/include -I../../Qt/5.9/gcc_64/include/QtWebEngineWidgets -I../../Qt/5.9/gcc_64/include/QtWebEngineCore -I../../Qt/5.9/gcc_64/include/QtQuick -I../../Qt/5.9/gcc_64/include/QtPrintSupport -I../../Qt/5.9/gcc_64/include/QtWidgets -I../../Qt/5.9/gcc_64/include/QtGui -I../../Qt/5.9/gcc_64/include/QtWebChannel -I../../Qt/5.9/gcc_64/include/QtQml -I../../Qt/5.9/gcc_64/include/QtNetwork -I../../Qt/5.9/gcc_64/include/QtPositioning -I../../Qt/5.9/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I../../Qt/5.9/gcc_64/mkspecs/linux-g++
+INCPATH       = -I. -I../../Qt/5.9/gcc_64/include -I../../Qt/5.9/gcc_64/include/QtWebEngineWidgets -I../../Qt/5.9/gcc_64/include/QtWebEngineCore -I../../Qt/5.9/gcc_64/include/QtQuick -I../../Qt/5.9/gcc_64/include/QtPrintSupport -I../../Qt/5.9/gcc_64/include/QtSvg -I../../Qt/5.9/gcc_64/include/QtWidgets -I../../Qt/5.9/gcc_64/include/QtGui -I../../Qt/5.9/gcc_64/include/QtWebChannel -I../../Qt/5.9/gcc_64/include/QtQml -I../../Qt/5.9/gcc_64/include/QtNetwork -I../../Qt/5.9/gcc_64/include/QtPositioning -I../../Qt/5.9/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I../../Qt/5.9/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/jlatorre/Qt/5.9/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -39,7 +39,7 @@ DISTNAME      = cuarzobrowser1.0.0
 DISTDIR = /home/jlatorre/Repos/cuarzobrowser/.tmp/cuarzobrowser1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/jlatorre/Qt/5.9/gcc_64/lib -Wl,-rpath-link,/home/jlatorre/Qt/5.9/gcc_64/lib
-LIBS          = $(SUBLIBS) -L/home/jlatorre/Qt/5.9/gcc_64/lib -lQt5WebEngineWidgets -lQt5WebEngineCore -lQt5Quick -lQt5PrintSupport -lQt5Widgets -lQt5Gui -lQt5WebChannel -lQt5Qml -lQt5Network -lQt5Positioning -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/home/jlatorre/Qt/5.9/gcc_64/lib -lQt5WebEngineWidgets -lQt5WebEngineCore -lQt5Quick -lQt5PrintSupport -lQt5Svg -lQt5Widgets -lQt5Gui -lQt5WebChannel -lQt5Qml -lQt5Network -lQt5Positioning -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -452,6 +452,7 @@ Makefile: cuarzobrowser.pro ../../Qt/5.9/gcc_64/mkspecs/linux-g++/qmake.conf ../
 		../../Qt/5.9/gcc_64/lib/libQt5WebEngineCore.prl \
 		../../Qt/5.9/gcc_64/lib/libQt5Quick.prl \
 		../../Qt/5.9/gcc_64/lib/libQt5PrintSupport.prl \
+		../../Qt/5.9/gcc_64/lib/libQt5Svg.prl \
 		../../Qt/5.9/gcc_64/lib/libQt5Widgets.prl \
 		../../Qt/5.9/gcc_64/lib/libQt5Gui.prl \
 		../../Qt/5.9/gcc_64/lib/libQt5WebChannel.prl \
@@ -642,6 +643,7 @@ resources.qrc:
 ../../Qt/5.9/gcc_64/lib/libQt5WebEngineCore.prl:
 ../../Qt/5.9/gcc_64/lib/libQt5Quick.prl:
 ../../Qt/5.9/gcc_64/lib/libQt5PrintSupport.prl:
+../../Qt/5.9/gcc_64/lib/libQt5Svg.prl:
 ../../Qt/5.9/gcc_64/lib/libQt5Widgets.prl:
 ../../Qt/5.9/gcc_64/lib/libQt5Gui.prl:
 ../../Qt/5.9/gcc_64/lib/libQt5WebChannel.prl:
@@ -863,11 +865,13 @@ moc_window.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QDebug \
 		../../Qt/5.9/gcc_64/include/QtWebEngineCore/qwebenginehttprequest.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qpagelayout.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qpagesize.h \
+		../../Qt/5.9/gcc_64/include/QtGui/QList \
 		../../Qt/5.9/gcc_64/include/QtGui/QMouseEvent \
 		../../Qt/5.9/gcc_64/include/QtWidgets/QToolTip \
 		../../Qt/5.9/gcc_64/include/QtWidgets/qtooltip.h \
 		../../Qt/5.9/gcc_64/include/QtGui/QCursor \
 		../../Qt/5.9/gcc_64/include/QtCore/QPoint \
+		../../Qt/5.9/gcc_64/include/QtCore/QStringList \
 		topbar.h \
 		../../Qt/5.9/gcc_64/include/QtWidgets/QFrame \
 		../../Qt/5.9/gcc_64/include/QtWidgets/qframe.h \
@@ -913,7 +917,7 @@ moc_window.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QDebug \
 		window.h \
 		moc_predefs.h \
 		../../Qt/5.9/gcc_64/bin/moc
-	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include window.h -o moc_window.cpp
+	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtSvg -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include window.h -o moc_window.cpp
 
 moc_opbutton.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QPropertyAnimation \
 		../../Qt/5.9/gcc_64/include/QtCore/qpropertyanimation.h \
@@ -1035,7 +1039,7 @@ moc_opbutton.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QPropertyAnimation \
 		opbutton.h \
 		moc_predefs.h \
 		../../Qt/5.9/gcc_64/bin/moc
-	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include opbutton.h -o moc_opbutton.cpp
+	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtSvg -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include opbutton.h -o moc_opbutton.cpp
 
 moc_hoverbutton.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QPropertyAnimation \
 		../../Qt/5.9/gcc_64/include/QtCore/qpropertyanimation.h \
@@ -1158,7 +1162,7 @@ moc_hoverbutton.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QPropertyAnimation \
 		hoverbutton.h \
 		moc_predefs.h \
 		../../Qt/5.9/gcc_64/bin/moc
-	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include hoverbutton.h -o moc_hoverbutton.cpp
+	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtSvg -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include hoverbutton.h -o moc_hoverbutton.cpp
 
 moc_storage.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QFile \
 		../../Qt/5.9/gcc_64/include/QtCore/qfile.h \
@@ -1238,7 +1242,7 @@ moc_storage.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QFile \
 		storage.h \
 		moc_predefs.h \
 		../../Qt/5.9/gcc_64/bin/moc
-	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include storage.h -o moc_storage.cpp
+	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtSvg -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include storage.h -o moc_storage.cpp
 
 moc_marcador.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QVariantMap \
 		../../Qt/5.9/gcc_64/include/QtCore/qvariant.h \
@@ -1321,6 +1325,10 @@ moc_marcador.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QVariantMap \
 		../../Qt/5.9/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt/5.9/gcc_64/include/QtCore/QUrl \
 		../../Qt/5.9/gcc_64/include/QtCore/QDebug \
+		../../Qt/5.9/gcc_64/include/QtGui/QFontMetrics \
+		../../Qt/5.9/gcc_64/include/QtGui/qfontmetrics.h \
+		../../Qt/5.9/gcc_64/include/QtGui/qfont.h \
+		../../Qt/5.9/gcc_64/include/QtCore/QStringList \
 		hoverbutton.h \
 		../../Qt/5.9/gcc_64/include/QtCore/QPropertyAnimation \
 		../../Qt/5.9/gcc_64/include/QtCore/qpropertyanimation.h \
@@ -1352,8 +1360,6 @@ moc_marcador.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QVariantMap \
 		../../Qt/5.9/gcc_64/include/QtGui/qtextoption.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qpen.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qfontinfo.h \
-		../../Qt/5.9/gcc_64/include/QtGui/qfont.h \
-		../../Qt/5.9/gcc_64/include/QtGui/qfontmetrics.h \
 		../../Qt/5.9/gcc_64/include/QtWidgets/QPushButton \
 		../../Qt/5.9/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.9/gcc_64/include/QtWidgets/qabstractbutton.h \
@@ -1365,7 +1371,7 @@ moc_marcador.cpp: ../../Qt/5.9/gcc_64/include/QtCore/QVariantMap \
 		marcador.h \
 		moc_predefs.h \
 		../../Qt/5.9/gcc_64/bin/moc
-	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include marcador.h -o moc_marcador.cpp
+	/home/jlatorre/Qt/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jlatorre/Qt/5.9/gcc_64/mkspecs/linux-g++ -I/home/jlatorre/Repos/cuarzobrowser -I/home/jlatorre/Qt/5.9/gcc_64/include -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebEngineCore -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQuick -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPrintSupport -I/home/jlatorre/Qt/5.9/gcc_64/include/QtSvg -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWidgets -I/home/jlatorre/Qt/5.9/gcc_64/include/QtGui -I/home/jlatorre/Qt/5.9/gcc_64/include/QtWebChannel -I/home/jlatorre/Qt/5.9/gcc_64/include/QtQml -I/home/jlatorre/Qt/5.9/gcc_64/include/QtNetwork -I/home/jlatorre/Qt/5.9/gcc_64/include/QtPositioning -I/home/jlatorre/Qt/5.9/gcc_64/include/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-redhat-linux -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include -I/usr/local/include -I/usr/include marcador.h -o moc_marcador.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1490,6 +1496,7 @@ main.o: main.cpp ../../Qt/5.9/gcc_64/include/QtWidgets/QApplication \
 		../../Qt/5.9/gcc_64/include/QtCore/QDir \
 		../../Qt/5.9/gcc_64/include/QtCore/qdir.h \
 		../../Qt/5.9/gcc_64/include/QtCore/qfileinfo.h \
+		../../Qt/5.9/gcc_64/include/QtCore/QStringList \
 		window.h \
 		../../Qt/5.9/gcc_64/include/QtCore/QDebug \
 		../../Qt/5.9/gcc_64/include/QtWidgets/QWidget \
@@ -1536,6 +1543,7 @@ main.o: main.cpp ../../Qt/5.9/gcc_64/include/QtWidgets/QApplication \
 		../../Qt/5.9/gcc_64/include/QtWebEngineCore/qwebenginehttprequest.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qpagelayout.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qpagesize.h \
+		../../Qt/5.9/gcc_64/include/QtGui/QList \
 		../../Qt/5.9/gcc_64/include/QtGui/QMouseEvent \
 		../../Qt/5.9/gcc_64/include/QtWidgets/QToolTip \
 		../../Qt/5.9/gcc_64/include/QtWidgets/qtooltip.h \
@@ -1862,11 +1870,13 @@ window.o: window.cpp window.h \
 		../../Qt/5.9/gcc_64/include/QtWebEngineCore/qwebenginehttprequest.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qpagelayout.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qpagesize.h \
+		../../Qt/5.9/gcc_64/include/QtGui/QList \
 		../../Qt/5.9/gcc_64/include/QtGui/QMouseEvent \
 		../../Qt/5.9/gcc_64/include/QtWidgets/QToolTip \
 		../../Qt/5.9/gcc_64/include/QtWidgets/qtooltip.h \
 		../../Qt/5.9/gcc_64/include/QtGui/QCursor \
 		../../Qt/5.9/gcc_64/include/QtCore/QPoint \
+		../../Qt/5.9/gcc_64/include/QtCore/QStringList \
 		topbar.h \
 		../../Qt/5.9/gcc_64/include/QtWidgets/QFrame \
 		../../Qt/5.9/gcc_64/include/QtWidgets/qframe.h \
@@ -2137,6 +2147,10 @@ marcador.o: marcador.cpp marcador.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt/5.9/gcc_64/include/QtCore/QUrl \
 		../../Qt/5.9/gcc_64/include/QtCore/QDebug \
+		../../Qt/5.9/gcc_64/include/QtGui/QFontMetrics \
+		../../Qt/5.9/gcc_64/include/QtGui/qfontmetrics.h \
+		../../Qt/5.9/gcc_64/include/QtGui/qfont.h \
+		../../Qt/5.9/gcc_64/include/QtCore/QStringList \
 		hoverbutton.h \
 		../../Qt/5.9/gcc_64/include/QtCore/QPropertyAnimation \
 		../../Qt/5.9/gcc_64/include/QtCore/qpropertyanimation.h \
@@ -2168,8 +2182,6 @@ marcador.o: marcador.cpp marcador.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qtextoption.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qpen.h \
 		../../Qt/5.9/gcc_64/include/QtGui/qfontinfo.h \
-		../../Qt/5.9/gcc_64/include/QtGui/qfont.h \
-		../../Qt/5.9/gcc_64/include/QtGui/qfontmetrics.h \
 		../../Qt/5.9/gcc_64/include/QtWidgets/QPushButton \
 		../../Qt/5.9/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.9/gcc_64/include/QtWidgets/qabstractbutton.h \

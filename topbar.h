@@ -20,9 +20,6 @@ public:
 	QAction *https = url_edit->addAction(QIcon(":/res/images/tb-https.svg"), QLineEdit::LeadingPosition);
 	QAction *http = url_edit->addAction(QIcon(":/res/images/tb-http.svg"), QLineEdit::LeadingPosition);
 	QAction *search = url_edit->addAction(QIcon(":/res/images/tb-search.svg"), QLineEdit::LeadingPosition);
-	OpButton *minimize_btn = new OpButton(":/res/images/tb-minimize.svg",20,20);
-	OpButton *maximize_btn = new OpButton(":/res/images/tb-maximize.svg",20,20);
-	OpButton *close_btn = new OpButton(":/res/images/tb-close.svg",20,20);
 };
 
 #endif // TOPBAR_H

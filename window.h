@@ -46,7 +46,6 @@ public slots:
   void cargarMarcadores();
   void agregarMarcador();
   void verificacionMarcadores();
-  void maximize(bool checked);
   void finishLoading(bool finished);
   void setProgress(int p);
   void bookmarkRightClicked();
