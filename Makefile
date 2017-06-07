@@ -13,8 +13,8 @@ MAKEFILE      = Makefile
 CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_QML_DEBUG -DQT_WEBENGINEWIDGETS_LIB -DQT_WEBENGINECORE_LIB -DQT_QUICK_LIB -DQT_PRINTSUPPORT_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_WEBCHANNEL_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES) -std=c++11
+CXXFLAGS      = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES) -std=c++11
 INCPATH       = -I. -I../../Qt/5.9/gcc_64/include -I../../Qt/5.9/gcc_64/include/QtWebEngineWidgets -I../../Qt/5.9/gcc_64/include/QtWebEngineCore -I../../Qt/5.9/gcc_64/include/QtQuick -I../../Qt/5.9/gcc_64/include/QtPrintSupport -I../../Qt/5.9/gcc_64/include/QtSvg -I../../Qt/5.9/gcc_64/include/QtWidgets -I../../Qt/5.9/gcc_64/include/QtGui -I../../Qt/5.9/gcc_64/include/QtWebChannel -I../../Qt/5.9/gcc_64/include/QtQml -I../../Qt/5.9/gcc_64/include/QtNetwork -I../../Qt/5.9/gcc_64/include/QtPositioning -I../../Qt/5.9/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I../../Qt/5.9/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/jlatorre/Qt/5.9/gcc_64/bin/qmake
 DEL_FILE      = rm -f
