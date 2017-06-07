@@ -1,5 +1,5 @@
 language: cpp
-compiler: gcc
+compiler: g++
 sudo: require
 dist: trusty
 
