@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Cuarzo Browser
+Exec=cuarzobrowser
+Icon=cuarzobrowser
+Categories=Network;WebBrowser;
+StartupNotify=true
+Comment=Minimal Browser made to shine.
+Terminal=false
+Keywords=internet;cuarzo;web;browser;
+Name[en_US]=cuarzobrowser

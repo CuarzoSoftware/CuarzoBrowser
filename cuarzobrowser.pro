@@ -26,5 +26,6 @@ RESOURCES += \
 
 DISTFILES += \
     .travis.yml \
-    default.desktop \
-    default-icon.png
+    default-icon.png \
+    cuarzobrowser.desktop \
+    cuarzobrowser.png
