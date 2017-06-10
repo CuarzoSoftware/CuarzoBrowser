@@ -19,9 +19,9 @@ A web browser developed with [QT](https://www.qt.io/) and [WebKit](https://webki
 	- [ ] Privacy Badger
 	- [ ] HTTPS Everywhere
 
-# Building Instructions
+# Build Instructions
 
-In order to build QT5+ is needed.
+QT5+ is needed to build CuarzoBrowser.
 
 ~~~
 $ git clone https://github.com/juanlatorre/cuarzobrowser.git
@@ -34,7 +34,7 @@ $ ./cuarzobrowser
 
 # Libraries used (ldd)
 
-List of libraries that you may need to install, the name could variate on each Distribution.
+List of libraries that you may need to install, the name could vary depending on your Distribution.
 
 * Qt 5.9
 * Qt Web Engine (libQt5WebEngineCore)
